@@ -1,0 +1,716 @@
+/* ========================
+   RATE ADJUSTMENT PANEL
+   ======================== */
+
+.rate-adjustment-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-md);
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Title row */
+.rap-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rap-title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-heading4);
+  font-weight: var(--font-weight-strong);
+  color: var(--color-text-heading);
+  line-height: var(--line-height-heading4);
+  margin: 0;
+}
+
+.rap-dev-notes-link {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Toolbar */
+.rap-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--padding-sm);
+  flex-wrap: wrap;
+}
+
+.rap-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--padding-sm);
+  flex-wrap: wrap;
+}
+
+.rap-filter-select .ant-select-selector {
+  border-radius: var(--border-radius) !important;
+}
+
+.rap-room-types-select {
+  min-width: 280px;
+}
+
+.rap-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--padding-sm);
+}
+
+.rap-sync-btn {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg) !important;
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-lg) !important;
+}
+
+.rap-range-rate-btn {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg) !important;
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-lg) !important;
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.rap-range-rate-btn:hover {
+  background-color: var(--color-primary-hover) !important;
+  border-color: var(--color-primary-hover) !important;
+}
+
+/* ========================
+   DURATION DROPDOWN
+   ======================== */
+
+.rap-duration-trigger-wrapper {
+  position: relative;
+}
+
+.rap-duration-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: rgba(0, 0, 0, 0.88);
+  height: 40px;
+  min-width: 140px;
+  user-select: none;
+}
+
+.rap-duration-trigger:hover {
+  border-color: var(--color-primary);
+}
+
+.rap-duration-trigger-arrow {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.25);
+  margin-left: auto;
+}
+
+.rap-duration-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 1050;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  min-width: 240px;
+  overflow: visible;
+}
+
+.rap-duration-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 8px;
+}
+
+.rap-duration-datepicker-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.25);
+  height: 32px;
+  margin-bottom: 8px;
+}
+
+.rap-duration-datepicker-trigger:hover {
+  border-color: var(--color-primary);
+}
+
+.rap-duration-placeholder {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rap-duration-arrow {
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.rap-duration-calendar-icon {
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.rap-duration-calendar-wrapper {
+  margin-bottom: 8px;
+}
+
+.rap-duration-calendar-wrapper .ant-picker {
+  width: 100%;
+}
+
+.rap-duration-option {
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.88);
+  line-height: 22px;
+}
+
+.rap-duration-option:hover {
+  background-color: #f5f5f5;
+}
+
+.rap-duration-option.active {
+  background-color: #f1f6ff;
+  color: #3e4be0;
+}
+
+.rap-duration-footer {
+  display: flex;
+  gap: 8px;
+  padding: 7px 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.rap-duration-btn {
+  flex: 1;
+  height: 32px;
+  border-radius: 6px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.rap-duration-btn-reset {
+  background: white;
+  border: 1px solid #d9d9d9;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.rap-duration-btn-reset:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.rap-duration-btn-apply {
+  background: #3e4be0;
+  color: white;
+}
+
+.rap-duration-btn-apply:hover {
+  background: #4d5efd;
+}
+
+.rap-duration-btn-apply:disabled {
+  background: #d9d9d9;
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+}
+
+/* Legend Bar */
+.rap-legend-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding-xs) 0;
+  border-bottom: 1px solid var(--color-split);
+}
+
+.rap-legend-items {
+  display: flex;
+  align-items: center;
+  gap: var(--padding-md);
+}
+
+.rap-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.rap-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.rap-legend-icon {
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.rap-last-sync {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* ========================
+   RATE GRID TABLE
+   ======================== */
+
+.rap-grid-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-split);
+  border-radius: var(--border-radius-lg);
+}
+
+.rap-grid {
+  border-collapse: collapse;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  min-width: 100%;
+}
+
+/* Header */
+.rap-grid thead {
+  background-color: #fafafa;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.rap-grid th {
+  padding: 0;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-align: left;
+  border-bottom: 1px solid var(--color-split);
+  white-space: nowrap;
+  font-size: var(--font-size-sm);
+}
+
+.rap-th-room-type {
+  width: 160px;
+  min-width: 160px;
+  position: sticky;
+  left: 0;
+  background-color: #fafafa;
+  z-index: 3;
+  padding: var(--padding-xs) var(--padding-sm);
+}
+
+.rap-th-occupancy {
+  width: 150px;
+  min-width: 150px;
+  position: sticky;
+  left: 160px;
+  background-color: #fafafa;
+  z-index: 3;
+  padding: var(--padding-xs) var(--padding-sm);
+}
+
+.rap-th-date {
+  width: 108px;
+  min-width: 108px;
+  text-align: center;
+  position: relative;
+  vertical-align: bottom;
+  border-left: 0.5px solid #f0f0f0;
+  border-right: 0.5px solid #f0f0f0;
+}
+
+/* Date header container inside th */
+.rap-date-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+}
+
+/* Today header — dark primary background */
+.rap-date-header.today {
+  background-color: #3e4be0;
+  color: white;
+  border-radius: 6px 6px 0 0;
+  margin: 2px;
+}
+
+.rap-date-header.today .rap-date-day {
+  color: white;
+  font-weight: var(--font-weight-strong);
+}
+
+.rap-date-header.today .rap-date-full {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.rap-date-header.today .rap-date-event-dot {
+  background-color: white;
+}
+
+/* Weekend header — blue indicator bar at top */
+.rap-date-header.weekend {
+  border-top: 3px solid #3e4be0;
+  padding-top: 5px;
+  background-color: #f0f0ff;
+}
+
+.rap-date-day-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rap-date-day {
+  font-weight: var(--font-weight-strong);
+  color: var(--color-text-primary);
+  font-size: var(--font-size);
+}
+
+.rap-date-event-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #faad14;
+}
+
+.rap-date-full {
+  display: block;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Body Rows */
+.rap-grid tbody tr {
+  border-bottom: 1px solid var(--color-split);
+}
+
+.rap-row-first {
+  border-top: 2px solid var(--color-split);
+}
+
+.rap-td-room-type {
+  padding: var(--padding-xs) var(--padding-sm);
+  vertical-align: top;
+  position: sticky;
+  left: 0;
+  background-color: white;
+  z-index: 1;
+  border-right: 1px solid var(--color-split);
+}
+
+.rap-room-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.rap-bound-icon {
+  font-size: 14px;
+  margin-top: 2px;
+  display: inline-flex;
+  color: rgba(0, 0, 0, 0.45);
+  flex-shrink: 0;
+}
+
+.rap-room-name {
+  display: block;
+  font-weight: var(--font-weight-strong);
+  color: var(--color-text-primary);
+  font-size: var(--font-size);
+  line-height: 1.4;
+}
+
+.rap-room-bound {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+.rap-td-occupancy {
+  padding: var(--padding-xs) var(--padding-sm);
+  vertical-align: middle;
+  position: sticky;
+  left: 160px;
+  background-color: white;
+  z-index: 1;
+  border-right: 1px solid var(--color-split);
+}
+
+.rap-occ-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rap-occ-label {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  font-size: var(--font-size);
+}
+
+.rap-derived-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: var(--font-weight-strong);
+  color: var(--color-primary);
+  background-color: #f0f0ff;
+  border-radius: var(--border-radius-sm);
+  padding: 0 4px;
+  margin-left: 6px;
+}
+
+.rap-occ-meta {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+/* Rate Cells */
+.rap-td-rate {
+  padding: 4px 6px;
+  text-align: center;
+  vertical-align: middle;
+  border-left: 0.5px solid #f0f0f0;
+  border-right: 0.5px solid #f0f0f0;
+}
+
+/* Today column — left border accent */
+.rap-td-rate.today {
+  border-left: 2px solid var(--color-primary);
+  background-color: #fafafe;
+}
+
+/* Weekend columns — subtle tint, no yellow */
+.rap-td-rate.weekend {
+  background-color: #f8f8ff;
+}
+
+/* Read-only rate display (click to edit) */
+.rap-rate-readonly {
+  display: inline-block;
+  width: 72px;
+  padding: 3px 6px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid transparent;
+  text-align: center;
+  line-height: 22px;
+}
+
+.rap-rate-readonly:hover {
+  border-color: #d9d9d9;
+  background-color: #fafafa;
+}
+
+/* Editing input */
+.rap-rate-input {
+  width: 72px;
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+}
+
+.rap-rate-input .ant-input {
+  text-align: center;
+  padding: 2px 4px;
+}
+
+/* Derived (bound) rate — not editable */
+.rap-rate-derived {
+  display: inline-block;
+  width: 72px;
+  padding: 3px 6px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  line-height: 22px;
+  cursor: default;
+}
+
+/* Rate cell wrapper for positioning bound icon */
+.rap-rate-cell-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Purple bound rate type icon — top right of cell */
+.rap-bound-rate-icon {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  font-size: 10px;
+  line-height: 1;
+  display: inline-flex;
+}
+
+/* ========================
+   INFO ALERTS (Ant Design Alert)
+   ======================== */
+
+.rap-info-alert {
+  font-family: var(--font-family);
+  background: #f1f6ff;
+  border: 1px solid #acc4fd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.rap-info-alert .ant-alert-icon {
+  display: inline-flex;
+  align-items: flex-start;
+  margin-inline-end: 8px;
+}
+
+.rap-info-alert .ant-alert-message {
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/* ========================
+   SUCCESS ALERT (consistent with CancellationPolicies)
+   ======================== */
+
+.rap-alert-wrapper {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  z-index: 1050;
+  min-width: 320px;
+  max-width: 480px;
+  animation: rapAlertSlideIn 0.3s ease-out;
+}
+
+.rap-alert-wrapper .ant-alert-success {
+  font-family: var(--font-family);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes rapAlertSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ========================
+   RATE VALIDATION ERROR
+   ======================== */
+
+/* Red border on out-of-range cells */
+.rap-td-rate.has-error {
+  outline: 1.5px solid #ff4d4f;
+  outline-offset: -1.5px;
+}
+
+/* Value text in error state — shown in red */
+.rap-rate-error-value {
+  color: #ff4d4f;
+  font-size: 13px;
+  flex: 1;
+  white-space: nowrap;
+}
+
+/* Error icon — red circle-info to the right of value */
+.rap-rate-error-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 4px;
+  cursor: pointer;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.rap-rate-error-icon svg {
+  display: block;
+}
+
+/* Ensure error cell wrapper aligns icon properly */
+.rap-td-rate.has-error .rap-rate-cell-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* ========================
+   STD ROOM TYPE FLAG BADGE
+   ======================== */
+
+.rap-std-flag-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: #eef0fc;
+  border-radius: 6px;
+  flex-shrink: 0;
+  color: #3e4be0;
+  font-size: 15px;
+}
+
+.rap-std-flag {
+  display: block;
+}

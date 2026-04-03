@@ -1,0 +1,135 @@
+/* ASI Hotel PMS - Header Bar */
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  background-color: var(--header-bg);
+  border-bottom: var(--line-width) solid var(--header-border);
+  border-left: var(--line-width) solid var(--header-border);
+  padding: var(--padding-sm) var(--padding);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: var(--sidebar-width-expanded);
+  z-index: 99;
+  transition: left var(--transition-duration) var(--transition-timing);
+}
+
+.header-bar.sidebar-collapsed {
+  left: var(--sidebar-width-collapsed);
+}
+
+/* Search Section */
+.header-bar-search {
+  flex-shrink: 0;
+  width: 344px;
+}
+
+.header-bar-search .ant-input-search {
+  border-radius: var(--border-radius);
+}
+
+.header-bar-search .ant-input-search .ant-input {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  height: var(--control-height);
+  background-color: var(--color-bg-container);
+  border-color: var(--color-border);
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.header-bar-search .ant-input-search .ant-input::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+.header-bar-search .ant-input-search .ant-btn {
+  height: var(--control-height);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Actions Section */
+.header-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--padding);
+}
+
+.header-bar-action-group {
+  display: flex;
+  align-items: center;
+  gap: var(--padding-sm);
+}
+
+.header-bar-action-btn {
+  width: var(--control-height);
+  height: var(--control-height);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+.header-bar-action-btn.default {
+  background-color: var(--color-bg-container);
+  border: var(--line-width) solid var(--color-border);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-button);
+}
+
+.header-bar-action-btn.default:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.header-bar-action-btn.primary {
+  background-color: var(--color-primary);
+  border: none;
+  color: var(--color-text-white);
+  box-shadow: var(--shadow-primary-button);
+}
+
+.header-bar-action-btn.primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Divider */
+.header-divider {
+  width: var(--line-width);
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 var(--margin-xs);
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-xs);
+  cursor: pointer;
+  padding: var(--padding-xxs);
+  border-radius: var(--border-radius-lg);
+  transition: background-color var(--transition-duration) var(--transition-timing);
+}
+
+.profile-section:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.profile-avatar {
+  width: var(--control-height);
+  height: var(--control-height);
+  border-radius: var(--border-radius-lg);
+  border: var(--line-width) solid var(--color-border);
+  object-fit: cover;
+}
+
+.profile-chevron {
+  color: var(--sidebar-icon);
+  font-size: var(--font-size);
+}

@@ -1,0 +1,190 @@
+/* ASI Hotel PMS - Design Tokens
+ * Generated from Figma design token files
+ * Font: Source Sans 3
+ * Base unit: 4px
+ */
+
+:root {
+  /* ========================
+     COLORS - Light Theme
+     ======================== */
+
+  /* ASI Brand Colors */
+  --color-asi-1: #F1F6FF;
+  --color-asi-2: #CFE0FF;
+  --color-asi-3: #ACC4FD;
+  --color-asi-4: #86A4FF;
+  --color-asi-5: #6B85FF;
+
+  /* ASI Brand Colors - Dark Theme (used for sidebar) */
+  --color-asi-dark-1: #F1F6FF;
+  --color-asi-dark-2: #161D40;
+  --color-asi-dark-3: #1C2755;
+  --color-asi-dark-4: #203175;
+  --color-asi-dark-5: #263EA0;
+
+  /* Primary / Brand */
+  --color-primary: #3E4BE0;
+  --color-primary-hover: #4D5EFD;
+  --color-primary-active: #2F3AB8;
+  --color-primary-outline: rgba(77, 94, 253, 0.1);
+
+  /* Semantic Colors */
+  --color-success: #38A169;
+  --color-warning: #D69E2E;
+  --color-error: #E53E3E;
+  --color-info: #3E4BE0;
+
+  /* Neutral - Text */
+  --color-text-heading: rgba(0, 0, 0, 0.88);
+  --color-text-primary: rgba(0, 0, 0, 0.88);
+  --color-text-secondary: rgba(0, 0, 0, 0.65);
+  --color-text-tertiary: rgba(0, 0, 0, 0.45);
+  --color-text-placeholder: rgba(0, 0, 0, 0.25);
+  --color-text-disabled: rgba(0, 0, 0, 0.25);
+  --color-text-white: #FFFFFF;
+
+  /* Neutral - Background */
+  --color-bg-container: #FFFFFF;
+  --color-bg-layout: #F5F5F5;
+  --color-bg-elevated: #FFFFFF;
+  --color-bg-spotlight: rgba(0, 0, 0, 0.85);
+  --color-bg-mask: rgba(0, 0, 0, 0.45);
+
+  /* Neutral - Border */
+  --color-border: #D9D9D9;
+  --color-border-secondary: #F0F0F0;
+  --color-split: rgba(0, 0, 0, 0.06);
+
+  /* Sidebar Colors */
+  --sidebar-bg: #2A2F52;
+  --sidebar-item-hover: rgba(255, 255, 255, 0.08);
+  --sidebar-item-active: rgba(255, 255, 255, 0.12);
+  --sidebar-text: rgba(255, 255, 255, 0.85);
+  --sidebar-text-secondary: rgba(255, 255, 255, 0.65);
+  --sidebar-icon: rgba(255, 255, 255, 0.65);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-header-bg: #252A4A;
+
+  /* Header Colors */
+  --header-bg: #2A2F52;
+  --header-border: rgba(255, 255, 255, 0.3);
+
+  /* Table */
+  --table-header-bg: rgba(0, 0, 0, 0.02);
+  --table-border-color: #F0F0F0;
+  --table-header-sort-bg: rgba(0, 0, 0, 0.04);
+
+  /* ========================
+     TYPOGRAPHY
+     ======================== */
+
+  /* Font Family */
+  --font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-family-code: 'Source Sans 3', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  /* Font Sizes */
+  --font-size: 14px;
+  --font-size-sm: 12px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-icon: 12px;
+
+  /* Heading Font Sizes */
+  --font-size-heading-1: 38px;
+  --font-size-heading-2: 30px;
+  --font-size-heading-3: 24px;
+  --font-size-heading-4: 20px;
+  --font-size-heading-5: 16px;
+
+  /* Line Heights */
+  --line-height: 22px;
+  --line-height-sm: 20px;
+  --line-height-lg: 24px;
+  --line-height-heading-1: 46px;
+  --line-height-heading-2: 38px;
+  --line-height-heading-3: 32px;
+  --line-height-heading-4: 28px;
+  --line-height-heading-5: 24px;
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-strong: 600;
+
+  /* ========================
+     DIMENSIONS
+     ======================== */
+
+  /* Border Radius */
+  --border-radius-0: 0;
+  --border-radius-xs: 2px;
+  --border-radius-sm: 4px;
+  --border-radius: 6px;
+  --border-radius-lg: 8px;
+
+  /* Size Base (4px unit system) */
+  --size-xxs: 4px;
+  --size-xs: 8px;
+  --size-sm: 12px;
+  --size: 16px;
+  --size-ms: 16px;
+  --size-md: 20px;
+  --size-lg: 24px;
+  --size-xl: 32px;
+  --size-xxl: 40px;
+  --size-xxxl: 48px;
+
+  /* Control Heights */
+  --control-height-xs: 16px;
+  --control-height-sm: 24px;
+  --control-height: 32px;
+  --control-height-lg: 40px;
+
+  /* Line Width */
+  --line-width: 1px;
+  --line-width-bold: 2px;
+  --line-width-focus: 4px;
+
+  /* Margins */
+  --margin-xxs: 4px;
+  --margin-xs: 8px;
+  --margin-sm: 12px;
+  --margin: 16px;
+  --margin-md: 20px;
+  --margin-lg: 24px;
+  --margin-xl: 32px;
+  --margin-xxl: 48px;
+
+  /* Paddings */
+  --padding-xxs: 4px;
+  --padding-xs: 8px;
+  --padding-sm: 12px;
+  --padding: 16px;
+  --padding-md: 20px;
+  --padding-lg: 24px;
+  --padding-xl: 32px;
+  --padding-xxl: 40px;
+
+  /* Sidebar Dimensions */
+  --sidebar-width-expanded: 240px;
+  --sidebar-width-collapsed: 64px;
+  --sidebar-item-height: 40px;
+  --sidebar-icon-size: 20px;
+
+  /* Header Dimensions */
+  --header-height: 62px;
+
+  /* ========================
+     SHADOWS
+     ======================== */
+  --shadow-dropdown: 0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 3px 6px 0px rgba(0, 0, 0, 0.12), 0px 9px 28px 0px rgba(0, 0, 0, 0.05);
+  --shadow-button: 0px 2px 0px 0px rgba(0, 0, 0, 0.02);
+  --shadow-primary-button: 0px 2px 0px 0px rgba(77, 94, 253, 0.1);
+
+  /* ========================
+     TRANSITIONS
+     ======================== */
+  --transition-duration: 0.2s;
+  --transition-timing: cubic-bezier(0.645, 0.045, 0.355, 1);
+}

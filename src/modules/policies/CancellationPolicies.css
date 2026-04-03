@@ -1,0 +1,555 @@
+/* ASI Hotel PMS - Cancellation Policies Module */
+
+.cancellation-policies {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-sm);
+  width: 100%;
+}
+
+/* Title Row (title + dev notes link) */
+.cancellation-policies-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cancellation-policies-title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-heading-4);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--line-height-heading-4);
+  color: var(--color-text-heading);
+  margin: 0;
+}
+
+/* Search and Actions Bar */
+.cancellation-policies-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cancellation-policies-search {
+  width: 463px;
+  flex-shrink: 0;
+}
+
+.cancellation-policies-search .ant-input-search {
+  border-radius: var(--border-radius-lg);
+}
+
+.cancellation-policies-search .ant-input-search .ant-input {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  height: var(--control-height-lg);
+  border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+}
+
+.cancellation-policies-search .ant-input-search .ant-input::placeholder {
+  color: var(--color-text-placeholder);
+  font-family: var(--font-family);
+}
+
+.cancellation-policies-search .ant-input-search .ant-btn {
+  height: var(--control-height-lg);
+  width: var(--control-height-lg);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+}
+
+.cancellation-policies-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--padding-sm);
+}
+
+/* Dev Notes Link */
+.cancellation-policies-dev-notes-link {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cancellation-policies-dev-notes-link:hover {
+  color: var(--color-primary-hover);
+}
+
+/* Filter Button */
+.cancellation-policies-filter-btn {
+  width: var(--control-height-lg);
+  height: var(--control-height-lg);
+  border-radius: var(--border-radius-lg);
+  border: var(--line-width) solid var(--color-border);
+  background-color: var(--color-bg-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+  transition: all var(--transition-duration) var(--transition-timing);
+  box-shadow: var(--shadow-button);
+  padding: 0;
+}
+
+.cancellation-policies-filter-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.cancellation-policies-filter-btn.filter-active {
+  border-color: var(--color-primary-hover);
+  color: var(--color-primary);
+}
+
+/* New Policy Button */
+.cancellation-policies-new-btn {
+  height: var(--control-height-lg);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-primary);
+  border: none;
+  color: var(--color-text-white);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-lg);
+  padding: 0 var(--padding);
+  display: flex;
+  align-items: center;
+  gap: var(--margin-xs);
+  cursor: pointer;
+  box-shadow: var(--shadow-primary-button);
+  transition: all var(--transition-duration) var(--transition-timing);
+  white-space: nowrap;
+}
+
+.cancellation-policies-new-btn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.cancellation-policies-new-btn:active {
+  background-color: var(--color-primary-active);
+}
+
+/* ========================
+   TABLE STYLES
+   ======================== */
+
+.cancellation-policies-table .ant-table {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.cancellation-policies-table .ant-table-thead > tr > th {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--line-height);
+  color: var(--color-text-heading);
+  background-color: var(--table-header-bg);
+  border-bottom: 0.5px solid var(--color-split);
+  padding: var(--padding-sm) var(--padding-xs);
+  height: 46px;
+}
+
+.cancellation-policies-table .ant-table-tbody > tr > td {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height);
+  color: var(--color-text-primary);
+  border-bottom: 0.5px solid var(--table-border-color);
+  padding: var(--padding-sm) var(--padding-xs);
+  height: 46px;
+  max-width: 200px;
+}
+
+.cancellation-policies-table .ant-table-tbody > tr:hover > td {
+  background-color: var(--color-asi-1);
+}
+
+/* Ellipsis text in cells */
+.cell-ellipsis-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* Policy name with clock icon */
+.policy-name-cell {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+}
+
+.hourly-clock-icon {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.45);
+  flex-shrink: 0;
+  cursor: help;
+}
+
+.hourly-clock-icon:hover {
+  color: var(--color-primary);
+}
+
+/* Tooltip styling */
+.policy-tooltip .ant-tooltip-inner {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: var(--border-radius);
+  padding: 6px 8px;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+/* Actions Column */
+.policy-actions-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--border-radius-sm);
+  color: var(--color-text-tertiary);
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+.policy-actions-btn:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  color: var(--color-text-primary);
+}
+
+/* Pagination */
+.cancellation-policies-table .ant-pagination {
+  font-family: var(--font-family);
+  margin: var(--margin-sm) 0;
+}
+
+.cancellation-policies-table .ant-pagination .ant-pagination-total-text {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color-text-secondary);
+}
+
+/* ========================
+   DRAWER STYLES
+   ======================== */
+
+.cancellation-policy-drawer .ant-drawer-header {
+  display: none;
+}
+
+.cancellation-policy-drawer .ant-drawer-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cancellation-policy-drawer .ant-drawer-footer {
+  border-top: var(--line-width) solid var(--color-split);
+  padding: var(--padding) var(--padding-lg);
+}
+
+/* Custom Drawer Header */
+.drawer-custom-header {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-sm);
+  padding: var(--padding) var(--padding-lg);
+  border-bottom: var(--line-width) solid var(--color-split);
+  flex-shrink: 0;
+}
+
+.drawer-close-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-duration) var(--transition-timing);
+  flex-shrink: 0;
+}
+
+.drawer-close-icon:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.drawer-title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-heading-5);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--line-height-heading-5);
+  color: var(--color-text-heading);
+  margin: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Drawer Form Content */
+.drawer-form-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--padding-lg);
+}
+
+/* Form Styles */
+.cancellation-policy-form .ant-form-item {
+  margin-bottom: var(--margin-sm);
+}
+
+.cancellation-policy-form .ant-form-item-label > label {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height);
+  color: var(--color-text-primary);
+}
+
+.cancellation-policy-form .ant-form-item-label > label .ant-form-item-required::before {
+  color: var(--color-error);
+}
+
+.form-item-checkbox {
+  margin-bottom: var(--margin-sm) !important;
+}
+
+.form-item-checkbox .ant-checkbox-wrapper {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color-text-primary);
+}
+
+.form-item-field .ant-input,
+.form-item-field .ant-input-lg,
+.form-item-field .ant-select-selector,
+.form-item-field .ant-input-number {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  border-radius: var(--border-radius);
+}
+
+.form-item-field .ant-input-textarea textarea {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  border-radius: var(--border-radius);
+  resize: none;
+}
+
+.form-item-field .ant-select-lg .ant-select-selector {
+  height: var(--control-height-lg) !important;
+  border-radius: var(--border-radius) !important;
+}
+
+.form-item-field .ant-input-number-lg {
+  width: 100%;
+  border-radius: var(--border-radius);
+}
+
+.form-item-field .ant-input-number-group-addon {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  background-color: rgba(0, 0, 0, 0.02);
+  color: var(--color-text-primary);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Required Mark */
+.required-mark {
+  color: var(--color-error);
+  margin-left: 2px;
+}
+
+/* Cut-Off Window Input — full width to match other fields */
+.cutoff-window-input {
+  width: 100% !important;
+}
+
+/* Help Icon */
+.field-help-icon {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size);
+  margin-left: 4px;
+  cursor: help;
+}
+
+/* Drawer Footer */
+.drawer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--margin-xs);
+}
+
+.drawer-cancel-btn {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg) !important;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  height: var(--control-height-lg);
+  border-radius: var(--border-radius-lg);
+  padding: 0 15px;
+}
+
+.drawer-cancel-btn:hover {
+  color: var(--color-text-primary) !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.drawer-submit-btn {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg) !important;
+  font-weight: var(--font-weight-medium);
+  height: var(--control-height-lg);
+  border-radius: var(--border-radius-lg);
+  padding: 0 15px;
+}
+
+.drawer-submit-btn:not(:disabled) {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.drawer-submit-btn:not(:disabled):hover {
+  background-color: var(--color-primary-hover) !important;
+  border-color: var(--color-primary-hover) !important;
+}
+
+/* Progressive disclosure animation */
+.cancellation-policy-form .form-item-field {
+  animation: fadeInDown 0.2s ease-out;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================
+   SUCCESS ALERT (Ant Design Alert component)
+   ======================== */
+
+.cancellation-policies-alert-wrapper {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  z-index: 1050;
+  min-width: 320px;
+  max-width: 480px;
+  animation: alertSlideIn 0.3s ease-out;
+}
+
+.cancellation-policies-alert-wrapper .ant-alert-success {
+  font-family: var(--font-family);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.08), 0px 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes alertSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ========================
+   FILTER DRAWER
+   ======================== */
+
+.filter-drawer .filter-clear-btn {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color-primary);
+  padding: 0;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.filter-drawer .filter-clear-btn:hover {
+  color: var(--color-primary-hover);
+}
+
+/* Multi-select in filter */
+.filter-drawer .ant-select-multiple .ant-select-selector {
+  min-height: var(--control-height-lg) !important;
+  border-radius: var(--border-radius) !important;
+  padding: 4px 8px;
+}
+
+.filter-drawer .ant-select-multiple .ant-select-selection-item {
+  background-color: #f1f6ff;
+  border-color: #d6deff;
+  border-radius: var(--border-radius-sm);
+  color: var(--color-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+}
+
+/* ========================
+   CONFIRMATION MODALS
+   ======================== */
+
+.cancel-edit-modal .ant-modal-confirm-title {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.cancel-edit-modal .ant-modal-confirm-content {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color-text-primary);
+}
+
+.cancel-edit-modal .ant-btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.cancel-edit-modal .ant-btn-primary:hover {
+  background-color: var(--color-primary-hover) !important;
+  border-color: var(--color-primary-hover) !important;
+}
+
+.delete-policy-modal .ant-modal-confirm-title {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.delete-policy-modal .ant-modal-confirm-content {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color-text-primary);
+}
+
+/* Disabled menu item styling */
+.ant-dropdown-menu-item-disabled {
+  opacity: 0.4;
+  cursor: not-allowed !important;
+}

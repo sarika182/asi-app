@@ -1,0 +1,506 @@
+/* ASI Hotel PMS - Range Rate Drawer */
+
+/* Drawer overrides */
+.range-rate-drawer .ant-drawer-header {
+  display: none;
+}
+
+.range-rate-drawer .ant-drawer-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.range-rate-drawer .ant-drawer-footer {
+  border-top: var(--line-width, 1px) solid var(--color-split, #f0f0f0);
+  padding: var(--padding, 12px) var(--padding-lg, 24px);
+}
+
+/* Custom Header */
+.rrd-header {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-sm, 8px);
+  padding: var(--padding, 12px) var(--padding-lg, 24px);
+  border-bottom: var(--line-width, 1px) solid var(--color-split, #f0f0f0);
+  flex-shrink: 0;
+}
+
+.rrd-close-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.88);
+  border-radius: var(--border-radius-sm, 4px);
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.rrd-close-icon:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.rrd-title {
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.88);
+  margin: 0;
+  flex: 1;
+}
+
+/* Form Content */
+.rrd-form-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.rrd-form .ant-form-item {
+  margin-bottom: 16px;
+}
+
+.rrd-form .ant-form-item-label > label {
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+/* Suppress Ant Design's auto-injected ::before asterisk — we render it explicitly via .rrd-label-required span */
+.rrd-form .ant-form-item-label > label.ant-form-item-required::before,
+.rrd-form .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-no-star)::before {
+  display: none !important;
+  content: "" !important;
+}
+
+/* Date row: side by side */
+.rrd-date-row {
+  display: flex;
+  gap: 16px;
+}
+
+.rrd-date-row .ant-form-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.rrd-date-row .ant-picker {
+  width: 100%;
+}
+
+/* Select overrides */
+.rrd-form .ant-select {
+  width: 100%;
+}
+
+/* Room type option with subtitle */
+.rrd-room-option {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.rrd-room-option-label {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.rrd-room-option-subtitle {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+/* Rate type grouped option subtitle */
+.rrd-rate-option-subtitle {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  margin-left: 4px;
+}
+
+/* Selected Room Types Section */
+.rrd-selected-section {
+  margin-top: 24px;
+}
+
+.rrd-selected-heading {
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.88);
+  margin: 0 0 16px;
+}
+
+/* Rate Table */
+.rrd-rate-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #f0f0f0;
+  border-radius: var(--border-radius-lg, 8px);
+  overflow: visible;
+}
+
+.rrd-rate-table tbody {
+  overflow: visible;
+}
+
+.rrd-rate-table thead th {
+  background: #fafafa;
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  white-space: nowrap;
+}
+
+.rrd-rate-table tbody td {
+  padding: 10px 12px 36px !important;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.rrd-rate-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Room type cell */
+.rrd-room-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rrd-room-cell-name {
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rrd-room-cell-bound {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.rrd-base-flag {
+  color: #3e4be0;
+  font-size: 14px;
+  line-height: 1;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* Rate input cell */
+.rrd-rate-cell {
+  display: flex;
+  align-items: center;
+}
+
+/* Single bordered container for input + extension */
+.rrd-rate-input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 32px;
+  min-width: 160px;
+  transition: border-color 0.2s;
+}
+
+.rrd-rate-input-group:hover {
+  border-color: #3e4be0;
+}
+
+.rrd-rate-input-group:focus-within {
+  border-color: #3e4be0;
+  box-shadow: 0 0 0 2px rgba(62, 75, 224, 0.1);
+}
+
+.rrd-rate-input-group--bound {
+  background-color: rgba(0, 0, 0, 0.04);
+  cursor: not-allowed;
+}
+
+.rrd-rate-input-group--bound:hover {
+  border-color: #d9d9d9;
+}
+
+.rrd-rate-input-group--bound:focus-within {
+  border-color: #d9d9d9;
+  box-shadow: none;
+}
+
+.rrd-rate-input .ant-input-number,
+.rrd-rate-input-group .ant-input-number {
+  flex: 1;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+  height: 30px;
+}
+
+.rrd-rate-input-group .ant-input-number .ant-input-number-input {
+  height: 30px;
+  padding: 0 8px;
+  font-size: 14px;
+}
+
+.rrd-rate-divider {
+  width: 1px;
+  height: 20px;
+  background-color: #d9d9d9;
+  flex-shrink: 0;
+}
+
+.rrd-rate-ext-select {
+  flex-shrink: 0;
+  width: 56px !important;
+  min-width: 56px !important;
+}
+
+.rrd-rate-ext-select .ant-select-selector {
+  padding: 0 4px !important;
+  height: 30px !important;
+}
+
+.rrd-rate-ext-select .ant-select-selection-item {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.65);
+  padding-inline-end: 14px !important;
+}
+
+/* Non-editable (bound) cell values */
+.rrd-cell-bound-value {
+  flex: 1;
+  padding: 0 8px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+}
+
+.rrd-cell-bound-ext {
+  flex-shrink: 0;
+  width: 56px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.35);
+}
+
+/* Footer */
+.rrd-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.rrd-cancel-btn {
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.rrd-cancel-btn:hover {
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.rrd-apply-btn {
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 14px;
+  min-width: 200px;
+  background-color: #3e4be0 !important;
+  border-color: #3e4be0 !important;
+}
+
+.rrd-apply-btn:hover:not(:disabled) {
+  background-color: #3340c4 !important;
+  border-color: #3340c4 !important;
+}
+
+.rrd-apply-btn:disabled {
+  background-color: rgba(62, 75, 224, 0.4) !important;
+  border-color: transparent !important;
+}
+
+/* Validation error styles */
+.rrd-form .ant-form-item-has-error .ant-picker,
+.rrd-form .ant-form-item-has-error .ant-select .ant-select-selector {
+  border-color: #e53e3e !important;
+}
+
+.rrd-form .ant-form-item-explain-error {
+  color: #e53e3e;
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: 2px;
+}
+
+/* Required asterisk — shown explicitly in labels */
+.rrd-label-required {
+  color: #ff4d4f;
+  margin-left: 4px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Binding info alert — matches rap-info-alert styling from RateAdjustmentPanel */
+.rrd-binding-alert.ant-alert {
+  background-color: #f1f6ff;
+  border: 1px solid #acc4fd;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.rrd-binding-alert .ant-alert-message {
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 14px;
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.rrd-binding-alert .ant-alert-message strong {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.rrd-binding-alert .ant-alert-icon {
+  color: #3e4be0;
+  font-size: 18px;
+  margin-inline-end: 8px;
+}
+
+/* ─── Confirmation Modals (Cancel + Apply) ─── */
+/* Follows same pattern as Policies module info modals */
+
+.rrd-cancel-modal .ant-modal-header,
+.rrd-apply-confirm-modal .ant-modal-header {
+  display: none;
+}
+
+.rrd-cancel-modal .ant-modal-body,
+.rrd-apply-confirm-modal .ant-modal-body {
+  padding: 20px 24px 12px;
+}
+
+.rrd-cancel-modal .ant-modal-content,
+.rrd-apply-confirm-modal .ant-modal-content {
+  padding: 0;
+}
+
+.rrd-cancel-modal .ant-modal-footer,
+.rrd-apply-confirm-modal .ant-modal-footer {
+  padding: 12px 24px 20px;
+  border-top: none;
+}
+
+.rrd-modal-content {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.rrd-modal-title {
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+  margin-bottom: 8px;
+  line-height: 24px;
+}
+
+.rrd-modal-desc {
+  font-family: var(--font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.88);
+  line-height: 22px;
+}
+
+.rrd-modal-desc strong {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.rrd-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.rrd-modal-footer .ant-btn-primary {
+  background-color: #3e4be0 !important;
+  border-color: #3e4be0 !important;
+}
+
+.rrd-modal-footer .ant-btn-primary:hover {
+  background-color: #3340c4 !important;
+  border-color: #3340c4 !important;
+}
+
+/* ─── Column header with Reset icon ─── */
+.rrd-th-col {
+  position: relative;
+  white-space: nowrap;
+}
+
+.rrd-th-col-label {
+  display: inline-block;
+}
+
+.rrd-col-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  padding: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+  border-radius: 4px;
+  vertical-align: middle;
+  transition: color 0.15s, background 0.15s;
+}
+
+.rrd-col-reset-btn:hover {
+  color: #ff4d4f;
+  background: rgba(255, 77, 79, 0.08);
+}
+
+/* ─── Editable cell hover actions ─── */
+.rrd-rate-cell--hoverable {
+  position: relative;
+}
+
+/* Wrapper div that positions the Ant Design Button below the input group.
+   Shown/hidden via React state (hoveredCell) — not CSS :hover — so the
+   mouse can travel freely from input to button without losing hover state. */
+.rrd-cell-hover-action {
+  display: flex;
+  position: absolute;
+  bottom: -32px;
+  left: 0;
+  z-index: 10;
+  align-items: center;
+}
+
+/* Ant Design Button inside the hover action wrapper — no extra overrides needed;
+   default Button styling (white bg, #d9d9d9 border, 6px radius) matches Figma. */
+.rrd-cell-hover-action .ant-btn {
+  white-space: nowrap;
+  font-size: 12px;
+}

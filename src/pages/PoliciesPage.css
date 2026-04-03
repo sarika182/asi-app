@@ -1,0 +1,49 @@
+/* ASI Hotel PMS - Policies Page Layout */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-layout);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Page Layout */
+.policies-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-bg-layout);
+}
+
+/* Main Content Area */
+.policies-main {
+  flex: 1;
+  margin-left: var(--sidebar-width-expanded);
+  margin-top: var(--header-height);
+  padding: var(--padding-xxl);
+  transition: margin-left var(--transition-duration) var(--transition-timing);
+  min-height: calc(100vh - var(--header-height));
+  background-color: var(--color-bg-layout);
+  overflow: hidden;
+}
+
+.policies-main.sidebar-collapsed {
+  margin-left: var(--sidebar-width-collapsed);
+}
+
+/* Content Container - White Card */
+.policies-content {
+  width: 100%;
+  background-color: var(--color-bg-container);
+  border-radius: var(--border-radius-lg);
+  padding: var(--padding-lg);
+  min-height: calc(100vh - var(--header-height) - 80px);
+}
