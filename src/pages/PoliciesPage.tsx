@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar';
 import HeaderBar from '../components/HeaderBar';
 import CancellationPolicies from '../modules/policies/CancellationPolicies';
 import RateAdjustmentPanel from '../modules/rates/RateAdjustmentPanel';
+import LateCheckout from '../modules/front-desk/LateCheckout';
 import '../styles/tokens.css';
 import './PoliciesPage.css';
 
@@ -34,6 +35,8 @@ const PoliciesPage: React.FC = () => {
         return <CancellationPolicies />;
       case 'rate-adjustment-panel':
         return <RateAdjustmentPanel />;
+      case 'late-checkout':
+        return <LateCheckout />;
       default:
         return (
           <div>
