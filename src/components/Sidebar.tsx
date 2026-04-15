@@ -55,7 +55,18 @@ interface SidebarProps {
 const navigationItems: NavItem[] = [
   { key: 'calendar', label: 'Calendar View', icon: <CalendarIcon /> },
   { key: 'reservations', label: 'Reservations', icon: <BookIcon />, hasChildren: true },
-  { key: 'front-desk', label: 'Front Desk', icon: <BedFrontIcon />, hasChildren: true },
+  {
+    key: 'front-desk',
+    label: 'Front Desk',
+    icon: <BedFrontIcon />,
+    hasChildren: true,
+    children: [
+      { key: 'guest-ledger', label: 'Guest Ledger', icon: <BedFrontIcon /> },
+      { key: 'batch-folio', label: 'Batch Folio', icon: <BedFrontIcon /> },
+      { key: 'room-space-status-change', label: 'Room & Space Status Change', icon: <BedFrontIcon /> },
+      { key: 'late-checkout', label: 'Late Checkout', icon: <BedFrontIcon /> },
+    ],
+  },
   {
     key: 'rates',
     label: 'Rates and Availability',
