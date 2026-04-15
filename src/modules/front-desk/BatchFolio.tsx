@@ -451,7 +451,7 @@ const BatchFolio: React.FC = () => {
           rowSelection={{ selectedRowKeys, onChange: (keys: React.Key[]) => setSelectedRowKeys(keys) }}
           columns={visibleColumns}
           dataSource={filteredData}
-          pagination={{ pageSize: 10, showSizeChanger: true, pageSizeOptions: ['10', '20', '50'], showTotal: (total) => `Total ${total} results`, size: 'default' }}
+          pagination={{ pageSize: 10, showSizeChanger: true, pageSizeOptions: ['10', '20', '50'], showTotal: (total) => `Total ${total} results` }}
           size="middle"
           scroll={{ x: 'max-content' }}
         />
