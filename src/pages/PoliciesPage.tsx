@@ -4,6 +4,7 @@ import HeaderBar from '../components/HeaderBar';
 import CancellationPolicies from '../modules/policies/CancellationPolicies';
 import RateAdjustmentPanel from '../modules/rates/RateAdjustmentPanel';
 import LateCheckout from '../modules/front-desk/LateCheckout';
+import BatchFolio from '../modules/front-desk/BatchFolio';
 import '../styles/tokens.css';
 import './PoliciesPage.css';
 
@@ -37,6 +38,8 @@ const PoliciesPage: React.FC = () => {
         return <RateAdjustmentPanel />;
       case 'late-checkout':
         return <LateCheckout />;
+      case 'batch-folio':
+        return <BatchFolio />;
       default:
         return (
           <div>
