@@ -229,6 +229,9 @@ const RangeRateDrawer: React.FC<RangeRateDrawerProps> = ({ open, onClose, onAppl
 
   const isHourlyRate = rateType === 'hourly-rate';
   const isIndependentHourly = rateType === 'independent-hourly';
+  const isAnyHourly = ratePlanGroups
+    .find((g) => g.label === 'Hourly')
+    ?.options.some((o) => o.value === rateType) ?? false;
 
   // Room type handling with Select All
   const handleRoomTypeChange = useCallback((values: string[]) => {
@@ -684,7 +687,7 @@ const RangeRateDrawer: React.FC<RangeRateDrawerProps> = ({ open, onClose, onAppl
             <div className="rrd-selected-section">
               <h4 className="rrd-selected-heading">Selected Room Types</h4>
 
-              {isHourlyRate && (
+              {isAnyHourly && (
                 <Alert
                   type="info"
                   showIcon
@@ -693,9 +696,10 @@ const RangeRateDrawer: React.FC<RangeRateDrawerProps> = ({ open, onClose, onAppl
                   style={{ marginBottom: 16 }}
                   message={
                     <span>
-                      {'Selected Rate Type is bound with '}
-                      <strong>Best Hourly</strong>
-                      {' (Base : +$10, Adult : +30%, Child : +$10, Pet : +$11)'}
+                      <strong>Note:</strong> The selected rate is an <strong>hourly rate type</strong>. All charges below are applied on a <strong>per-hour basis</strong>.
+                      {isHourlyRate && (
+                        <> This rate is bound to <strong>Best Hourly</strong> (Base: +$10, Extra Adult: -10$, Extra Child: +$10, Pet Fee: N/A).</>
+                      )}
                     </span>
                   }
                 />

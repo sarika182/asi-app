@@ -400,6 +400,11 @@
   background-color: #f0f0ff;
 }
 
+/* Today always wins over weekend background */
+.rap-date-header.today.weekend {
+  background-color: #3e4be0;
+}
+
 .rap-date-day-row {
   display: flex;
   align-items: center;

@@ -711,18 +711,7 @@ const RateAdjustmentPanel: React.FC = () => {
         <div className="rap-last-sync">{lastSyncTime}</div>
       </div>
 
-      {/* Rate Type Binding Banner */}
-      {isRateTypeBound && (
-        <Alert
-          type="info"
-          showIcon
-          icon={<IconInfo style={{ fontSize: 20, color: '#3e4be0' }} />}
-          message={bindingBannerText}
-          className="rap-info-alert"
-        />
-      )}
-
-      {/* Hourly Rate Note */}
+      {/* Hourly Rate Note (merges binding info when applicable) */}
       {isHourlyRate && (
         <Alert
           type="info"
@@ -731,9 +720,27 @@ const RateAdjustmentPanel: React.FC = () => {
           className="rap-info-alert"
           message={
             <span>
-              <strong>Note:</strong> The selected rate is an <strong>hourly rate type</strong>. The following <strong>rates will be set on a per-hour basis.</strong>
+              <strong>Note:</strong> The selected rate is an <strong>hourly rate type</strong>. All charges below are applied on a <strong>per-hour basis</strong>.
+              {isRateTypeBound && (
+                <>
+                  {' '}This rate type is bound to <strong>{rateTypeBinding.boundToLabel}</strong> ({Object.entries(rateTypeBinding.adjustments).map(([occ, adj]) =>
+                    `${occ}: ${adj.type === 'fixed' ? `+$${adj.value}` : `+${adj.value}%`}`
+                  ).join(', ')}).
+                </>
+              )}
             </span>
           }
+        />
+      )}
+
+      {/* Rate Type Binding Banner — only for non-hourly bound rates */}
+      {isRateTypeBound && !isHourlyRate && (
+        <Alert
+          type="info"
+          showIcon
+          icon={<IconInfo style={{ fontSize: 20, color: '#3e4be0' }} />}
+          message={bindingBannerText}
+          className="rap-info-alert"
         />
       )}
 
