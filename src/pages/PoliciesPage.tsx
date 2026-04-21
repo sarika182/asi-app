@@ -5,6 +5,8 @@ import CancellationPolicies from '../modules/policies/CancellationPolicies';
 import RateAdjustmentPanel from '../modules/rates/RateAdjustmentPanel';
 import LateCheckout from '../modules/front-desk/LateCheckout';
 import BatchFolio from '../modules/front-desk/BatchFolio';
+import Calendar from '../modules/calendar/Calendar';
+import Reports from '../modules/reports/Reports';
 import '../styles/tokens.css';
 import './PoliciesPage.css';
 
@@ -27,11 +29,7 @@ const PoliciesPage: React.FC = () => {
   const renderContent = () => {
     switch (activeNavKey) {
       case 'calendar':
-        return (
-          <div>
-            <h1 style={{ fontSize: 24, fontWeight: 600, margin: 0 }}>Calendar View</h1>
-          </div>
-        );
+        return <Calendar />;
       case 'cancellation-policies':
         return <CancellationPolicies />;
       case 'rate-adjustment-panel':
@@ -40,12 +38,10 @@ const PoliciesPage: React.FC = () => {
         return <LateCheckout />;
       case 'batch-folio':
         return <BatchFolio />;
+      case 'reports':
+        return <Reports />;
       default:
-        return (
-          <div>
-            <h1 style={{ fontSize: 24, fontWeight: 600, margin: 0 }}>Calendar View</h1>
-          </div>
-        );
+        return <Calendar />;
     }
   };
 
@@ -63,8 +59,8 @@ const PoliciesPage: React.FC = () => {
         onSearch={handleSearch}
       />
 
-      <main className={`policies-main ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
-        <div className="policies-content">
+      <main className={`policies-main ${sidebarCollapsed ? 'sidebar-collapsed' : ''} ${activeNavKey === 'calendar' ? 'calendar-active' : ''}`}>
+        <div className={`policies-content ${activeNavKey === 'calendar' ? 'calendar-active' : ''}`}>
           {renderContent()}
         </div>
       </main>

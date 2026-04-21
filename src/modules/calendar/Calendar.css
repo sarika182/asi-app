@@ -1,0 +1,500 @@
+/* ── Calendar View ─────────────────────────────────────────────────────────── */
+
+.calendar-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 24px;
+  min-height: 0;
+}
+
+/* ── Toolbar ────────────────────────────────────────────────────────────────── */
+
+.cal-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.cal-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cal-title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-heading-4);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--line-height-heading-4);
+  color: var(--color-text-heading);
+  white-space: nowrap;
+  margin: 0;
+}
+
+.cal-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cal-delinquent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cal-delinquent-label {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+}
+
+.cal-unallocated-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+}
+
+/* ── Table Wrapper ──────────────────────────────────────────────────────────── */
+
+.cal-table-wrapper {
+  flex: 1;
+  overflow: auto;
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--border-radius);
+  min-height: 0;
+  /* Clip the table so sticky left column works */
+  position: relative;
+}
+
+/* ── Table ──────────────────────────────────────────────────────────────────── */
+
+.cal-table {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* ── Rows ───────────────────────────────────────────────────────────────────── */
+
+.cal-row {
+  display: flex;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+.cal-row:last-child {
+  border-bottom: none;
+}
+
+/* ── Fixed Left Cell ─────────────────────────────────────────────────────────── */
+
+.cal-left-cell {
+  flex-shrink: 0;
+  width: 200px;
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: #fff;
+  border-right: 1px solid var(--color-border-secondary);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  overflow: hidden;
+}
+
+/* ── Timeline (right side of each row) ──────────────────────────────────────── */
+
+.cal-timeline {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Header Row ─────────────────────────────────────────────────────────────── */
+
+.cal-header-row {
+  height: 88px;
+  position: sticky;
+  top: 0;
+  z-index: 4;
+}
+
+.cal-header-row .cal-left-cell {
+  z-index: 5;
+  background: #fafafa;
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+.cal-header-left-label {
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+/* Date header cells (absolutely positioned within cal-timeline) */
+.cal-date-header {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 10px 8px;
+  border-right: 1px solid var(--color-border-secondary);
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+.cal-date-header:last-child {
+  border-right: none;
+}
+
+/* Today's date column header */
+.cal-date-today {
+  background: var(--color-asi-dark-3, #1C2755) !important;
+}
+
+.cal-date-today .cal-day-name,
+.cal-date-today .cal-date-text {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Weekend column header */
+.cal-date-weekend .cal-day-name {
+  color: #E67E22;
+}
+
+.cal-day-name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.cal-date-text {
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+/* Occupancy % tags */
+.cal-occ-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 20px;
+  min-width: 38px;
+}
+
+.cal-occ-tag.occ-today {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cal-occ-tag.occ-high {
+  background: #1C2755;
+  color: #fff;
+}
+
+.cal-occ-tag.occ-mid {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.cal-occ-tag.occ-low {
+  background: #FED7D7;
+  color: #C53030;
+}
+
+/* ── Room Type Row ───────────────────────────────────────────────────────────── */
+
+.cal-type-row {
+  height: 56px;
+  background: #F8F9FC;
+}
+
+.cal-type-left {
+  background: #F8F9FC;
+  gap: 8px;
+}
+
+.cal-collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  border-radius: var(--border-radius-sm);
+  transition: background var(--transition-duration);
+}
+
+.cal-collapse-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.cal-type-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.cal-type-name {
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cal-type-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* Room type date cells */
+.cal-type-cell {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-right: 1px solid var(--color-border-secondary);
+  background: #F8F9FC;
+  box-sizing: border-box;
+  padding: 4px 8px;
+}
+
+.cal-type-cell:last-child {
+  border-right: none;
+}
+
+.cal-type-cell.cal-today-cell {
+  background: rgba(30, 39, 93, 0.06);
+}
+
+.cal-type-cell.cal-weekend-cell {
+  background: rgba(230, 126, 34, 0.04);
+}
+
+.cal-avail {
+  font-size: 12px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.cal-price {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+}
+
+/* ── Room Row ────────────────────────────────────────────────────────────────── */
+
+.cal-room-row {
+  height: 56px;
+  background: #fff;
+}
+
+.cal-room-left {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: #fff;
+}
+
+.cal-room-number {
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.cal-room-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-tertiary);
+}
+
+/* Background cells */
+.cal-bg-cell {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #fff;
+  border-right: 1px solid var(--color-border-secondary);
+  box-sizing: border-box;
+}
+
+.cal-bg-cell:last-of-type {
+  border-right: none;
+}
+
+.cal-bg-cell.cal-today-cell {
+  background: #F1F6FF;
+}
+
+.cal-bg-cell.cal-weekend-cell {
+  background: #FFFBF5;
+}
+
+/* ── Reservation Blocks ──────────────────────────────────────────────────────── */
+
+.cal-res-block {
+  position: absolute;
+  top: 4px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px 0 6px;
+  border-radius: 4px;
+  border-left-width: 4px;
+  border-left-style: solid;
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: filter 0.15s ease;
+  z-index: 1;
+}
+
+.cal-res-block:hover {
+  filter: brightness(0.96);
+}
+
+/* Confirmed */
+.cal-res-confirmed {
+  background: #F0FFF4;
+  border-left-color: #38A169;
+}
+
+/* In-house */
+.cal-res-in-house {
+  background: #EBF8FF;
+  border-left-color: #3E4BE0;
+}
+
+/* Checked-out */
+.cal-res-checked-out {
+  background: #F7FAFC;
+  border-left-color: #718096;
+  opacity: 0.75;
+}
+
+/* Unconfirmed */
+.cal-res-unconfirmed {
+  background: #FFFFF0;
+  border-left-color: #D69E2E;
+}
+
+/* Courtesy-hold */
+.cal-res-courtesy-hold {
+  background: #FAF5FF;
+  border-left-color: #805AD5;
+}
+
+/* Hourly variant — slightly more saturated bg */
+.cal-res-hourly.cal-res-confirmed {
+  background: #E6FFED;
+}
+
+.cal-res-hourly.cal-res-in-house {
+  background: #E3F2FD;
+}
+
+/* Extends right (continues beyond visible range) */
+.cal-res-block.extends-right {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Extends left (started before visible range) */
+.cal-res-block.extends-left {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-width: 1px;
+}
+
+.cal-res-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cal-res-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.cal-res-name {
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.cal-res-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-tertiary);
+}
+
+.cal-res-hours {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(62, 75, 224, 0.12);
+  color: var(--color-primary);
+  font-size: 11px;
+  font-weight: var(--font-weight-strong);
+  padding: 0 5px;
+  border-radius: 3px;
+  line-height: 16px;
+  margin-left: 2px;
+}
+
+.cal-res-in-house .cal-res-hours {
+  background: rgba(62, 75, 224, 0.12);
+  color: #3E4BE0;
+}
+
+.cal-res-confirmed .cal-res-hours {
+  background: rgba(56, 161, 105, 0.12);
+  color: #38A169;
+}

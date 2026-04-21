@@ -78,7 +78,7 @@ const navigationItems: NavItem[] = [
       { key: 'restrictions', label: 'Restrictions', icon: <MoneyBillIcon /> },
     ],
   },
-  { key: 'reports', label: 'Reports', icon: <ChartIcon />, hasChildren: true },
+  { key: 'reports', label: 'Reports', icon: <ChartIcon /> },
   { key: 'guests', label: 'Guests', icon: <CircleUserIcon />, hasChildren: true },
   { key: 'audit', label: 'Audit', icon: <ClipboardIcon />, hasChildren: true },
   { key: 'business-channels', label: 'Business Channels', icon: <GlobeIcon />, hasChildren: true },

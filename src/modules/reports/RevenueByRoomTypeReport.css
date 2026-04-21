@@ -1,0 +1,429 @@
+/* ─── Revenue By Room Type Report ─── */
+
+.rrt-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin);
+}
+
+/* Toolbar */
+.rrt-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--margin);
+}
+
+.rrt-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-sm);
+}
+
+.rrt-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-xs);
+}
+
+.rrt-period-select {
+  width: 200px;
+}
+
+/* Approach switcher */
+.rrt-approach-segmented {
+  margin-right: var(--margin-sm);
+}
+
+/* Sub-tabs */
+.rrt-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rrt-tab {
+  padding: var(--padding-xs) var(--padding);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.rrt-tab:hover {
+  color: var(--color-primary);
+}
+
+.rrt-tab.active {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  border-bottom-color: var(--color-primary);
+}
+
+/* Approach 2 note */
+.rrt-approach2-note {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  background: var(--color-bg-layout);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  padding: var(--padding-xs) var(--padding-sm);
+}
+
+/* ─── KPI Cards ─── */
+.rrt-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--margin-sm);
+}
+
+.rrt-kpi-card {
+  background: var(--color-bg-container);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--padding-sm) var(--padding);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rrt-kpi-title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.rrt-kpi-total {
+  font-family: var(--font-family);
+  font-size: 22px;
+  font-weight: var(--font-weight-strong);
+  color: var(--color-text-heading);
+  line-height: 1.2;
+}
+
+.rrt-kpi-total.rrt-kpi-total-sm {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+}
+
+.rrt-kpi-divider {
+  height: 1px;
+  background: var(--color-border-secondary);
+  margin: 2px 0;
+}
+
+.rrt-kpi-row {
+  display: flex;
+  align-items: center;
+  gap: var(--margin-xs);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+}
+
+.rrt-kpi-row.rrt-kpi-row-lg {
+  font-size: var(--font-size);
+}
+
+.rrt-kpi-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.rrt-dot-hourly    { background-color: var(--color-primary); }
+.rrt-dot-nonhourly { background-color: #38A169; }
+
+.rrt-kpi-label {
+  flex: 1;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.rrt-kpi-value {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.rrt-kpi-value.rrt-kpi-value-lg {
+  font-size: 15px;
+  font-weight: var(--font-weight-strong);
+}
+.rrt-value-hourly    { color: var(--color-primary); }
+.rrt-value-nonhourly { color: #38A169; }
+
+.rrt-kpi-pct {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  padding: 1px 6px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.rrt-pct-hourly    { background: var(--color-primary-outline); color: var(--color-primary); }
+.rrt-pct-nonhourly { background: rgba(56,161,105,0.1);         color: #276749; }
+
+/* Split bar */
+.rrt-kpi-bar-track {
+  height: 4px;
+  background: var(--color-border-secondary);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+  display: flex;
+}
+
+.rrt-kpi-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+.rrt-bar-hourly    { background: var(--color-primary); }
+.rrt-bar-nonhourly { background: #38A169; }
+
+.rrt-kpi-bar-split .rrt-kpi-bar-fill {
+  border-radius: 0;
+}
+.rrt-kpi-bar-split .rrt-kpi-bar-fill:first-child { border-radius: 2px 0 0 2px; }
+.rrt-kpi-bar-split .rrt-kpi-bar-fill:last-child  { border-radius: 0 2px 2px 0; }
+
+/* Generic placeholder */
+.rrt-placeholder {
+  padding: var(--padding-lg) 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+}
+
+.rrt-icon-btn-wrapper {
+  position: relative;
+}
+
+.rrt-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: var(--color-bg-container);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.rrt-icon-btn:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.rrt-icon-btn.active {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: var(--color-primary-outline);
+}
+
+/* Column dropdown */
+.rrt-col-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+}
+
+.rrt-col-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 100;
+  background: var(--color-bg-container);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  min-width: 220px;
+  padding: var(--padding-xs) 0;
+}
+
+.rrt-col-dropdown-header {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  padding: var(--padding-xxs) var(--padding-sm) var(--padding-xs);
+  border-bottom: 1px solid var(--color-border-secondary);
+  margin-bottom: var(--padding-xxs);
+}
+
+.rrt-col-dropdown-item {
+  padding: var(--padding-xxs) var(--padding-sm);
+}
+
+.rrt-col-dropdown-item .ant-checkbox-wrapper {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+}
+
+/* Table */
+.rrt-table .ant-table-thead > tr > th {
+  background: var(--table-header-bg);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.rrt-table .ant-table-tbody > tr > td {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color-text-primary);
+}
+
+.rrt-total-row > td {
+  background: var(--table-header-bg) !important;
+  border-top: 1px solid var(--color-border) !important;
+}
+
+.rrt-total-cell {
+  font-weight: var(--font-weight-strong);
+}
+
+/* Approach 3 KPI grid — 4 cards, one row, content-width columns */
+.rrt-kpi-grid-txn {
+  grid-template-columns: repeat(4, minmax(0, 220px));
+  justify-content: start;
+}
+
+/* KPI section wrapper */
+.rrt-kpi-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-xs);
+}
+
+/* Section header — right-aligns the toggle */
+.rrt-kpi-section-hd {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Alt toggle button (single shared shuffle) */
+.rrt-kpi-alt-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px 3px 7px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.rrt-kpi-alt-toggle:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.rrt-kpi-alt-toggle.active {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: var(--color-primary-outline);
+}
+
+/* Alternative view badge (green pill under value) */
+.rrt-kpi-alt-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: #276749;
+  background: rgba(56, 161, 105, 0.1);
+  border-radius: 10px;
+  padding: 1px 8px;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* Sold > Total Rooms highlight (Approach 3) */
+.rrt-sold-over {
+  color: var(--color-warning, #D97706);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Excess Sales value (Approach 3 KPI) */
+.rrt-txn-excess {
+  color: var(--color-warning, #D97706);
+}
+
+.rrt-dot-excess { background-color: var(--color-warning, #D97706); }
+
+/* ─── Approach Info Block ─── */
+.rrt-approach-info {
+  border-top: 1px solid var(--color-border-secondary);
+  padding-top: var(--padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-sm);
+}
+
+.rrt-approach-desc {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: var(--line-height);
+}
+
+.rrt-pros-cons {
+  display: flex;
+  gap: var(--margin-lg);
+}
+
+.rrt-pros,
+.rrt-cons {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-xs);
+}
+
+.rrt-pros-cons-heading {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.rrt-pros-heading { color: #276749; }
+.rrt-cons-heading { color: #9B1C1C; }
+
+.rrt-pros-cons-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rrt-pros-cons-list li {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height);
+}
