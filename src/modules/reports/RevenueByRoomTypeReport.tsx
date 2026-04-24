@@ -45,14 +45,16 @@ const nonHourlyData: NonHourlyRow[] = [
 ];
 
 interface HourlyRow {
-  key: string; roomType: string; totalRooms: number; reservations: number;
-  hoursSold: number; availHours: number; revenue: number;
-  avgRatePerHour: number; revparPerHour: number; isTotal?: boolean;
+  key: string; roomType: string; roomsAvailable: number; roomsUtilized: number;
+  bookings: number; revenue: number; adr: number; revpar: number; isTotal?: boolean;
 }
 const hourlyData: HourlyRow[] = [
-  { key: '1', roomType: '(STD) Standard', totalRooms: 14, reservations: 8,  hoursSold: 32, availHours: 336, revenue: 320, avgRatePerHour: 10.00, revparPerHour: 0.95 },
-  { key: '2', roomType: '(DLX) Deluxe',   totalRooms: 8,  reservations: 5,  hoursSold: 20, availHours: 192, revenue: 240, avgRatePerHour: 12.00, revparPerHour: 1.25 },
-  { key: 'T', roomType: 'Total', totalRooms: 22, reservations: 13, hoursSold: 52, availHours: 528, revenue: 560, avgRatePerHour: 10.77, revparPerHour: 1.06, isTotal: true },
+  { key: '1', roomType: 'Executive Suite', roomsAvailable: 5,  roomsUtilized: 5,  bookings: 6,  revenue: 2100, adr: 350, revpar: 420 },
+  { key: '2', roomType: 'King Room',       roomsAvailable: 10, roomsUtilized: 10, bookings: 14, revenue: 2380, adr: 170, revpar: 238 },
+  { key: '3', roomType: 'Queen Smoking',   roomsAvailable: 3,  roomsUtilized: 3,  bookings: 11, revenue: 1320, adr: 120, revpar: 440 },
+  { key: '4', roomType: 'Queen Double',    roomsAvailable: 12, roomsUtilized: 9,  bookings: 9,  revenue: 1530, adr: 170, revpar: 128 },
+  { key: '5', roomType: 'King Smoking',    roomsAvailable: 8,  roomsUtilized: 4,  bookings: 4,  revenue: 680,  adr: 170, revpar: 85  },
+  { key: 'T', roomType: 'Total', roomsAvailable: 38, roomsUtilized: 29, bookings: 44, revenue: 8010, adr: 182, revpar: 211, isTotal: true },
 ];
 
 /* ═══════════════════════════════════════════
@@ -169,13 +171,12 @@ const defaultNonHourlyCols: ColConfig[] = [
   { key: 'revpar',  label: 'RevPAR ($)',          visible: true },
 ];
 const defaultHourlyCols: ColConfig[] = [
-  { key: 'totalRooms',     label: 'Total Rooms',        visible: true },
-  { key: 'reservations',   label: 'Reservations',       visible: true },
-  { key: 'hoursSold',      label: 'Room Hours Sold',    visible: true },
-  { key: 'availHours',     label: 'Available Hours',    visible: true },
-  { key: 'revenue',        label: 'Revenue ($)',         visible: true },
-  { key: 'avgRatePerHour', label: 'Avg Rate / Hour ($)', visible: true },
-  { key: 'revparPerHour',  label: 'RevPAR / Hour ($)',  visible: true },
+  { key: 'roomsAvailable', label: 'Rooms Available', visible: true },
+  { key: 'roomsUtilized',  label: 'Rooms Utilized',  visible: true },
+  { key: 'bookings',       label: 'Bookings',        visible: true },
+  { key: 'revenue',        label: 'Revenue ($)',     visible: true },
+  { key: 'adr',            label: 'ADR ($)',         visible: true },
+  { key: 'revpar',         label: 'RevPAR ($)',      visible: true },
 ];
 const defaultUnifiedCols: ColConfig[] = [
   { key: 'totalRooms',     label: 'Total Rooms',        visible: true },
@@ -219,11 +220,10 @@ function exportToExcel(approach: string, period: string) {
     XLSX.utils.book_append_sheet(wb, nhSheet, 'Non-Hourly');
 
     const hSheet = XLSX.utils.json_to_sheet(hourlyData.map(r => ({
-      'Room Type': r.roomType, 'Total Rooms': r.totalRooms, 'Reservations': r.reservations,
-      'Room Hours Sold': r.hoursSold, 'Available Hours': r.availHours,
-      'Revenue ($)': r.revenue, 'Avg Rate/Hour ($)': r.avgRatePerHour, 'RevPAR/Hour ($)': r.revparPerHour,
+      'Room Type': r.roomType, 'Rooms Available': r.roomsAvailable, 'Rooms Utilized': r.roomsUtilized,
+      'Bookings': r.bookings, 'Revenue ($)': r.revenue, 'ADR ($)': r.adr, 'RevPAR ($)': r.revpar,
     })));
-    hSheet['!cols'] = [{ wch: 30 }, { wch: 12 }, { wch: 14 }, { wch: 18 }, { wch: 18 }, { wch: 14 }, { wch: 20 }, { wch: 18 }];
+    hSheet['!cols'] = [{ wch: 30 }, { wch: 16 }, { wch: 16 }, { wch: 12 }, { wch: 14 }, { wch: 12 }, { wch: 14 }];
     XLSX.utils.book_append_sheet(wb, hSheet, 'Hourly');
   }
 
@@ -315,39 +315,34 @@ const RevenueByRoomTypeReport: React.FC = () => {
       sorter: (a, b) => a.roomType.localeCompare(b.roomType),
       render: (v, row) => <span className={row.isTotal ? 'rrt-total-cell' : ''}>{v}</span>,
     },
-    ...(isVis('totalRooms') ? [{
-      title: 'Total Rooms', dataIndex: 'totalRooms', key: 'totalRooms', width: 130, align: 'right' as const,
-      sorter: (a: HourlyRow, b: HourlyRow) => a.totalRooms - b.totalRooms,
+    ...(isVis('roomsAvailable') ? [{
+      title: 'Rooms Available', dataIndex: 'roomsAvailable', key: 'roomsAvailable', width: 150, align: 'right' as const,
+      sorter: (a: HourlyRow, b: HourlyRow) => a.roomsAvailable - b.roomsAvailable,
       render: (v: number, row: HourlyRow) => <span className={row.isTotal ? 'rrt-total-cell' : ''}>{fmtN(v)}</span>,
     }] : []),
-    ...(isVis('reservations') ? [{
-      title: 'Reservations', dataIndex: 'reservations', key: 'reservations', width: 140, align: 'right' as const,
-      sorter: (a: HourlyRow, b: HourlyRow) => a.reservations - b.reservations,
+    ...(isVis('roomsUtilized') ? [{
+      title: 'Rooms Utilized', dataIndex: 'roomsUtilized', key: 'roomsUtilized', width: 150, align: 'right' as const,
+      sorter: (a: HourlyRow, b: HourlyRow) => a.roomsUtilized - b.roomsUtilized,
       render: (v: number, row: HourlyRow) => <span className={row.isTotal ? 'rrt-total-cell' : ''}>{fmtN(v)}</span>,
     }] : []),
-    ...(isVis('hoursSold') ? [{
-      title: 'Room Hours Sold', dataIndex: 'hoursSold', key: 'hoursSold', width: 160, align: 'right' as const,
-      sorter: (a: HourlyRow, b: HourlyRow) => a.hoursSold - b.hoursSold,
-      render: (v: number, row: HourlyRow) => <span className={row.isTotal ? 'rrt-total-cell' : ''}>{fmtN(v)}</span>,
-    }] : []),
-    ...(isVis('availHours') ? [{
-      title: 'Available Hours', dataIndex: 'availHours', key: 'availHours', width: 160, align: 'right' as const,
-      sorter: (a: HourlyRow, b: HourlyRow) => a.availHours - b.availHours,
+    ...(isVis('bookings') ? [{
+      title: 'Bookings', dataIndex: 'bookings', key: 'bookings', width: 130, align: 'right' as const,
+      sorter: (a: HourlyRow, b: HourlyRow) => a.bookings - b.bookings,
       render: (v: number, row: HourlyRow) => <span className={row.isTotal ? 'rrt-total-cell' : ''}>{fmtN(v)}</span>,
     }] : []),
     ...(isVis('revenue') ? [{
-      title: 'Revenue ($)', dataIndex: 'revenue', key: 'revenue', width: 130, align: 'right' as const,
+      title: 'Revenue ($)', dataIndex: 'revenue', key: 'revenue', width: 140, align: 'right' as const,
       sorter: (a: HourlyRow, b: HourlyRow) => a.revenue - b.revenue,
       render: (v: number, row: HourlyRow) => <span className={row.isTotal ? 'rrt-total-cell' : ''}>{fmt(v)}</span>,
     }] : []),
-    ...(isVis('avgRatePerHour') ? [{
-      title: 'Avg Rate / Hour ($)', dataIndex: 'avgRatePerHour', key: 'avgRatePerHour', width: 180, align: 'right' as const,
-      sorter: (a: HourlyRow, b: HourlyRow) => a.avgRatePerHour - b.avgRatePerHour,
+    ...(isVis('adr') ? [{
+      title: 'ADR ($)', dataIndex: 'adr', key: 'adr', width: 120, align: 'right' as const,
+      sorter: (a: HourlyRow, b: HourlyRow) => a.adr - b.adr,
       render: (v: number, row: HourlyRow) => <span className={row.isTotal ? 'rrt-total-cell' : ''}>{fmt(v)}</span>,
     }] : []),
-    ...(isVis('revparPerHour') ? [{
-      title: 'RevPAR / Hour ($)', dataIndex: 'revparPerHour', key: 'revparPerHour', width: 170, align: 'right' as const,
-      sorter: (a: HourlyRow, b: HourlyRow) => a.revparPerHour - b.revparPerHour,
+    ...(isVis('revpar') ? [{
+      title: 'RevPAR ($)', dataIndex: 'revpar', key: 'revpar', width: 130, align: 'right' as const,
+      sorter: (a: HourlyRow, b: HourlyRow) => a.revpar - b.revpar,
       render: (v: number, row: HourlyRow) => <span className={row.isTotal ? 'rrt-total-cell' : ''}>{fmt(v)}</span>,
     }] : []),
   ];
